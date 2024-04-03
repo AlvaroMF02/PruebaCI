@@ -19,8 +19,23 @@ class Empresa_model extends CI_Model{
     }
 
 
-    public function insertar_empleado(){
+    public function get_empleados(){
+        $this->db->select("*");
+        $this->db->from("empleados");
 
+        $query = $this->db->get();
+
+        // print_r($query->result());
+
+        if($query->num_rows()>0){
+            return $query->result();
+        }else{
+            return NULL;
+        }
+    }
+
+
+    public function insertar_empleado(){
         $empleado["nombre"] = "ejemplo";
         $empleado["apellido1"] = "ejemplo";
         $empleado["apellido2"] = "ejemplo";

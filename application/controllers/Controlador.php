@@ -7,7 +7,8 @@ class Controlador extends CI_Controller
 	// Carga la página con toda la vista del admin
 	public function index()
 	{
-		$this->loadViews('vista-admin');
+		$data["empleados"] = $this->Empresa_model->get_empleados();
+		$this->loadViews("vista-admin", $data);
 	}
 
 	// Vista del login
@@ -31,40 +32,42 @@ class Controlador extends CI_Controller
 				$this->session->set_userdata($sesion);
 				// print_r($_SESSION);
 			} else {
-				echo "Clave o usuario incorrecto";
+				$sesion["error"] = "Contraseña o usuario incorrecta";
+				$this->session->set_userdata($sesion);
 			}
 		}
 		$this->loadViews('login');
 	}
 
 	// Cargar las vistas al hacer el login
-	public function loadViews($view)
+	public function loadViews($view, $data = null)
 	{
 		// Si la sesion esta iniciada carga la vista del admin
 		if (isset($_SESSION["nombre"])) {
 			// Para redireccionar al controlador cuando se pone login
-			if($view == "login"){
-				redirect(base_url()."Controlador","location");
+			if ($view == "login") {
+				redirect(base_url() . "Controlador", "location");
 			}
-			$this->load->view('vista-admin');
-			
+			// $this->load->view('vista-admin',$data);
+			$this->load->view($view, $data);
 		} else {
-			if($view == "login"){
+			if ($view == "login") {
 				$this->load->view('login');
-			}else{
-				redirect(base_url()."Controlador/login","location");
+			} else {
+				redirect(base_url() . "Controlador/login", "location");
 			}
 		}
 	}
 
+	// en que parte se ejecuta esto ???			url
+	// public function verEmpleados()
+	// {				// data esta bien comprobado
 
-	public function verEmpleados(){
-		if (isset($_SESSION["nombre"])) {
-			$data["empleados"] = $this->ejemplo_model->mis_tareas($_SESSION["curso"]);
-		} else {
-			redirect(base_url() . "Controlador", "location");
-		}
-	}
-
-
+	// 	if ($_SESSION["nombre"]) {
+	// 		$data["empleados"] = $this->Empresa_model->get_empleados();
+	// 		$this->loadViews("vista-admin", $data);
+	// 	} else {
+	// 		redirect(base_url() . "Controlador/login", "location");
+	// 	}
+	// }
 }

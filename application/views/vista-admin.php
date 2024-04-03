@@ -8,7 +8,7 @@ if (isset($_POST["btnSalir"])) {
 
 // Borrar empleado
 if (isset($_POST["btnBorrar"])) {
-	echo "asdasdasd";
+	$this->Empresa_model->borrar_empleado();
 }
 
 

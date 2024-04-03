@@ -44,6 +44,11 @@ class Empresa_model extends CI_Model{
         $this->db->insert("empleados",$empleado);
     }
 
+
+    public function borrar_empleado(){
+        echo "uwu";
+    }
+
 }
 
 ?>

@@ -34,13 +34,24 @@ class Empresa_model extends CI_Model{
     }
 
     // Inserción de un empleado
-    public function insertar_empleado(){
-        $empleado["nombre"] = "ejemplo";
-        $empleado["apellido1"] = "ejemplo";
-        $empleado["apellido2"] = "ejemplo";
-        $empleado["direccion"] = "ejemplo";
+    public function insertar_empleado($datosForm){
+        $empleado["nombre"] = $datosForm["nombre"];
+        $empleado["apellido1"] = $datosForm["apellido1"];
+        $empleado["apellido2"] = $datosForm["apellido2"];
+        $empleado["direccion"] = $datosForm["direccion"];
 
         $this->db->insert("empleados",$empleado);
+    }
+
+    // Edita un empleado
+    public function editar_empleado($datosForm){
+        $empleadoEdit["nombre"] = $datosForm["nombre"];
+        $empleadoEdit["apellido1"] = $datosForm["apellido1"];
+        $empleadoEdit["apellido2"] = $datosForm["apellido2"];
+        $empleadoEdit["direccion"] = $datosForm["direccion"];
+
+        $this->db->where("id", $datosForm["id"]);
+        $this->db->update("empleados", $empleadoEdit);
     }
 
     // Actualiza un empleado para ponerlo como borrado

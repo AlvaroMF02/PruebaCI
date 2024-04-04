@@ -8,7 +8,8 @@ if (isset($_POST["btnSalir"])) {
 
 // Borrar empleado
 if (isset($_POST["btnBorrar"])) {
-	$this->Empresa_model->borrar_empleado();
+	$this->Empresa_model->borrar_empleado($_POST["btnBorrar"]);
+	redirect(base_url() . "Controlador", "location");	// forma para actulizar la página mejorable?
 }
 
 
@@ -51,7 +52,7 @@ if (isset($_POST["btnBorrar"])) {
 				echo "<td>" . $em->nombre . "</td>";
 				echo "<td>" . $em->apellido1 . " " . $em->apellido2 . "</td>";
 				echo "<td>" . $em->direccion . "</td>";
-				echo "<td> <form method='post'><button name='btnEditar'>Editar</button> <button name='btnBorrar'>Borrar</button></form></td>";
+				echo "<td> <form method='post'><button name='btnEditar'>Editar</button> <button name='btnBorrar' value='$em->id'>Borrar</button></form></td>";
 				echo "</tr>";
 			}
 

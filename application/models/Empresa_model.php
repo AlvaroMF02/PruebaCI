@@ -18,14 +18,13 @@ class Empresa_model extends CI_Model{
         }
     }
 
-
+    // Muestra los empleados que no esten borrados
     public function get_empleados(){
         $this->db->select("*");
         $this->db->from("empleados");
+        $this->db->where("borrado",0);
 
         $query = $this->db->get();
-
-        // print_r($query->result());
 
         if($query->num_rows()>0){
             return $query->result();
@@ -34,7 +33,7 @@ class Empresa_model extends CI_Model{
         }
     }
 
-
+    // Inserción de un empleado
     public function insertar_empleado(){
         $empleado["nombre"] = "ejemplo";
         $empleado["apellido1"] = "ejemplo";
@@ -44,9 +43,12 @@ class Empresa_model extends CI_Model{
         $this->db->insert("empleados",$empleado);
     }
 
+    // Actualiza un empleado para ponerlo como borrado
+    public function borrar_empleado($id){
+        $borrado["borrado"] = 1;
 
-    public function borrar_empleado(){
-        echo "uwu";
+        $this->db->where("id", $id);
+        $this->db->update("empleados", $borrado);
     }
 
 }

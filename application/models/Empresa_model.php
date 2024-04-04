@@ -43,6 +43,21 @@ class Empresa_model extends CI_Model{
         $this->db->insert("empleados",$empleado);
     }
 
+    // Muestra un empleado por su id
+    // public function get_empleado($id){
+    //     $this->db->select("*");
+    //     $this->db->from("empleados");
+    //     $this->db->where("id",$id);
+
+    //     $query = $this->db->get();
+
+    //     if($query->num_rows()>0){
+    //         return $query->result();
+    //     }else{
+    //         return NULL;
+    //     }
+    // }
+
     // Edita un empleado
     public function editar_empleado($datosForm){
         $empleadoEdit["nombre"] = $datosForm["nombre"];

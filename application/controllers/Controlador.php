@@ -14,7 +14,6 @@ class Controlador extends CI_Controller
 	// Vista del login
 	public function login()
 	{
-
 		if (isset($_POST["usuario"]) && isset($_POST["clave"])) {
 			$usuario = $_POST["usuario"];
 			$clave = md5($_POST["clave"]);
@@ -30,7 +29,6 @@ class Controlador extends CI_Controller
 				$sesion["clave"] = $datosLogin[0]->clave;
 
 				$this->session->set_userdata($sesion);
-				// print_r($_SESSION);
 			} else {
 				$sesion["error"] = "Contraseña o usuario incorrecta";
 				$this->session->set_userdata($sesion);
@@ -58,16 +56,4 @@ class Controlador extends CI_Controller
 			}
 		}
 	}
-
-	// en que parte se ejecuta esto ???			url
-	// public function verEmpleados()
-	// {				// data esta bien comprobado
-
-	// 	if ($_SESSION["nombre"]) {
-	// 		$data["empleados"] = $this->Empresa_model->get_empleados();
-	// 		$this->loadViews("vista-admin", $data);
-	// 	} else {
-	// 		redirect(base_url() . "Controlador/login", "location");
-	// 	}
-	// }
 }

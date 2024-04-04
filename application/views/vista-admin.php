@@ -147,7 +147,7 @@ if (isset($_POST["editarEmpleado"])) {
 								<label for="direccion" class="form-label">Dirección</label>
 								<input type="text" class="form-control" id="direccionEdit" name="direccion" required>
 							</div>
-							<button type="submit" class="btn btn-primary" name="editarEmpleado">Inscribir</button>
+							<button type="submit" class="btn btn-primary" name="editarEmpleado">Editar</button>
 						</form>
 					</div>
 				</div>
@@ -174,7 +174,7 @@ if (isset($_POST["editarEmpleado"])) {
 		</div>
 	</div>
 
-	<!-- Carga del js -->
+	<!-- Carga del js de BootsTrap-->
 	<script src="<?php echo base_url() ?>assets/js/bootstrap.min.js"></script>
 	<script>
 		// recojo el id y lo guardo
@@ -185,7 +185,7 @@ if (isset($_POST["editarEmpleado"])) {
 				idEmpleado = id
 			}
 		}
-		// en el borrar del modal creo un input y guardo el valor a 
+		// en el borrar del modal creo un input y guardo el valor
 		function pasaPhp() {
 			if (idEmpleado != null) {
 				document.getElementById("idEmple").value = idEmpleado;

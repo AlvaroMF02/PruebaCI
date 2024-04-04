@@ -12,7 +12,7 @@
 <body>
     <div id="cont-login">
         <h1>Login</h1>
-        <form action="" method="post" id="login">
+        <form method="post" id="login">
             <div>
                 <label for="usuario">Usuario</label><br>
                 <input type="text" name="usuario" id="usuario">

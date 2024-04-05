@@ -16,7 +16,7 @@ class Controlador extends CI_Controller
 	{
 		if (isset($_POST["usuario"]) && isset($_POST["clave"])) {
 			$usuario = $_POST["usuario"];
-			$clave = md5($_POST["clave"]);
+			$clave = md5($_POST["clave"]); // $this->input->post() devuelve todo el post
 
 			// Guardo los datos del admin que se ha logeado		si no existe devuelve -1
 			$datosLogin = $this->Empresa_model->ver_login($usuario, $clave);
@@ -38,7 +38,7 @@ class Controlador extends CI_Controller
 	}
 
 	// Cargar las vistas al hacer el login
-	public function loadViews($view, $data = null)
+	private function loadViews($view, $data = null)
 	{
 		// Si la sesion esta iniciada carga la vista del admin
 		if (isset($_SESSION["nombre"])) {
@@ -46,7 +46,6 @@ class Controlador extends CI_Controller
 			if ($view == "login") {
 				redirect(base_url() . "Controlador", "location");
 			}
-			// $this->load->view('vista-admin',$data);
 			$this->load->view($view, $data);
 		} else {
 			if ($view == "login") {

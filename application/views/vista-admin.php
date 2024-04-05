@@ -33,6 +33,8 @@ if (isset($_POST["editarEmpleado"])) {
 	$datosForm["apellido2"] = $_POST["apellido2"];
 	$datosForm["direccion"] = $_POST["direccion"];
 
+	print_r($datosForm);
+
 	$this->Empresa_model->editar_empleado($datosForm);
 	redirect(base_url() . "Controlador", "location");
 }

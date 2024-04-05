@@ -62,6 +62,38 @@ class Empresa_model extends CI_Model{
         $this->db->update("empleados", $borrado);
     }
 
+    // -------------------- API --------------------
+
+    // mostrar todos los empleados
+    public function get_all_employee(){
+        $this->db->select("*");
+        $this->db->from("empleados");
+
+        $query = $this->db->get();
+
+        if($query->num_rows()>0){
+            return $query->result();
+        }else{
+            return NULL;
+        }
+    }
+
+    // Consultas a la base de datos
+    public function api_login($usuario,$clave){
+        $this->db->select("*");
+        $this->db->from("administradores");
+        $this->db->where("usuario",$usuario);
+        $this->db->where("clave",$clave);
+
+        $query = $this->db->get();
+
+        if($query->num_rows()>0){
+            return $query->result();
+        }else{
+            return -1;
+        }
+    }
+
 }
 
 ?>
